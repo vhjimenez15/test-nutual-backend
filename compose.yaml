@@ -1,0 +1,30 @@
+services:
+  server:
+    build:
+      context: .
+    container_name: nutual_server_flask
+    environment:
+      DEBUG: 1
+    volumes:
+      - .:/app
+    env_file:
+      - .envs/.flask
+      - .envs/.mysql
+    ports:
+      - 5000:5000
+    depends_on:
+      - db
+    restart: on-failure
+
+  db:
+    image: mysql
+    restart: always
+    container_name: nutual_database_mysql
+    env_file:
+      - .envs/.mysql
+    ports:
+      - 3306:3306
+
+volumes:
+  db-data:
+

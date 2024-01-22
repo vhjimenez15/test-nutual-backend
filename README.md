@@ -46,11 +46,15 @@ Descargue el archivo o clone el repositorio en la respectiva máquina de prueba 
 
 Si tiene git y desea clonarlo del repositorio ejecute:
 ```
-git clone "agregar repositorio"
+git clone https://github.com/vhjimenez15/test-nutual-backend.git
 ```
 Entre a la carpeta test-nutual-backend, abra una terminal de su preferencia y ejecute:
 ```
 docker-compose up --build
+```
+O
+```
+docker-compose up --build -d
 ```
 
 > [!NOTE]
@@ -58,16 +62,16 @@ docker-compose up --build
 
 Cuando la el contenedor de docker haya lanzado de manera exitosa a la aplicación del backend se habilitará el puerto 5000 del localhost para poder hacer uso de la misma.
 
-Luego ejecuto los siguientes comandos para dejar operativo el backend:
+Luego ejecuto los siguientes comandos para dejar operativo el backend, abra una nueva terminal y ejecute:
 ```
 docker exec -it nutual_server_flask bash
 ```
 Dentro del contenedor ejecute:
 ```
-flask db init
-flask db migrate -m "<migration_name>"
 flask db upgrade
 ```
+No se ejecuta flask db init porque ya exite la carpeta de migraciones en el proyecto.
+
 Luego:
 ```
 flask initial_command
